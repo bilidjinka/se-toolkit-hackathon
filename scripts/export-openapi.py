@@ -34,7 +34,7 @@ _EXPORT_ENV_DEFAULTS = {
 for name, value in _EXPORT_ENV_DEFAULTS.items():
     os.environ[name] = value
 
-from app.main import app
+from lms_backend.main import app
 
 
 def main() -> None:

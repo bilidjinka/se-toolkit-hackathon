@@ -35,9 +35,9 @@ The backend version in this lab contains a planted bug in a failure path. To sur
 
    Good nanobot logs to expect in this part include tool calls such as:
 
-   - `mcp_lms_logs_error_count`
-   - `mcp_lms_logs_search`
-   - `mcp_lms_traces_get`
+   - `mcp_obs_logs_error_count`
+   - `mcp_obs_logs_search`
+   - `mcp_obs_traces_get`
 
 4. Ask the agent:
 
@@ -161,7 +161,7 @@ The backend version in this lab contains a planted bug in a failure path. To sur
    Good nanobot logs to expect after recovery include:
 
    - `cron({"action":"add", ...})`
-   - `mcp_lms_logs_error_count({"minutes": 2})`
+   - `mcp_obs_logs_error_count({"minutes": 2})`
    - a health report that says no recent backend errors were found
 
    Older pre-fix logs and traces may still be visible in VictoriaLogs and VictoriaTraces for a while. For recovery verification, trust the newest post-redeploy request and the newest scheduled health report.

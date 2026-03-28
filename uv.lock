@@ -5,7 +5,7 @@ requires-python = "==3.14.*"
 [manifest]
 members = [
     "lms-backend",
-    "lms-mcp",
+    "mcp-lms",
     "qwen-code-api",
 ]
 
@@ -452,7 +452,7 @@ wheels = [
 [[package]]
 name = "lms-backend"
 version = "0.1.0"
-source = { virtual = "backend" }
+source = { editable = "backend" }
 dependencies = [
     { name = "asyncpg" },
     { name = "fastapi" },
@@ -481,13 +481,13 @@ requires-dist = [
     { name = "asyncpg", specifier = ">=0.30.0" },
     { name = "fastapi", specifier = "==0.128.7" },
     { name = "httpx", specifier = "==0.28.1" },
-    { name = "opentelemetry-distro", extras = ["otlp"], specifier = ">=0.51b0" },
-    { name = "opentelemetry-exporter-otlp-proto-grpc", specifier = ">=1.30.0" },
-    { name = "opentelemetry-instrumentation-asyncpg", specifier = ">=0.51b0" },
-    { name = "opentelemetry-instrumentation-fastapi", specifier = ">=0.51b0" },
-    { name = "opentelemetry-instrumentation-httpx", specifier = ">=0.51b0" },
-    { name = "opentelemetry-instrumentation-logging", specifier = ">=0.51b0" },
-    { name = "opentelemetry-instrumentation-sqlalchemy", specifier = ">=0.51b0" },
+    { name = "opentelemetry-distro", extras = ["otlp"], specifier = ">=0.61b0" },
+    { name = "opentelemetry-exporter-otlp-proto-grpc", specifier = ">=1.40.0" },
+    { name = "opentelemetry-instrumentation-asyncpg", specifier = ">=0.61b0" },
+    { name = "opentelemetry-instrumentation-fastapi", specifier = ">=0.61b0" },
+    { name = "opentelemetry-instrumentation-httpx", specifier = ">=0.61b0" },
+    { name = "opentelemetry-instrumentation-logging", specifier = ">=0.61b0" },
+    { name = "opentelemetry-instrumentation-sqlalchemy", specifier = ">=0.61b0" },
     { name = "pydantic", specifier = "==2.12.5" },
     { name = "pydantic-settings", specifier = "==2.12.0" },
     { name = "sqlmodel", specifier = ">=0.0.22" },
@@ -498,31 +498,6 @@ requires-dist = [
 dev = [
     { name = "aiosqlite", specifier = ">=0.21.0" },
     { name = "greenlet", specifier = ">=3.2.0" },
-]
-
-[[package]]
-name = "lms-mcp"
-version = "1.0.0"
-source = { editable = "mcp" }
-dependencies = [
-    { name = "httpx" },
-    { name = "mcp" },
-    { name = "opentelemetry-distro", extra = ["otlp"] },
-    { name = "opentelemetry-exporter-otlp-proto-grpc" },
-    { name = "opentelemetry-instrumentation-httpx" },
-    { name = "opentelemetry-instrumentation-logging" },
-    { name = "pydantic" },
-]
-
-[package.metadata]
-requires-dist = [
-    { name = "httpx", specifier = ">=0.28.0,<1.0.0" },
-    { name = "mcp", specifier = ">=1.26.0,<2.0.0" },
-    { name = "opentelemetry-distro", extras = ["otlp"], specifier = ">=0.51b0" },
-    { name = "opentelemetry-exporter-otlp-proto-grpc", specifier = ">=1.30.0" },
-    { name = "opentelemetry-instrumentation-httpx", specifier = ">=0.51b0" },
-    { name = "opentelemetry-instrumentation-logging", specifier = ">=0.51b0" },
-    { name = "pydantic", specifier = ">=2.12.0,<3.0.0" },
 ]
 
 [[package]]
@@ -548,6 +523,31 @@ dependencies = [
 sdist = { url = "https://files.pythonhosted.org/packages/fc/6d/62e76bbb8144d6ed86e202b5edd8a4cb631e7c8130f3f4893c3f90262b10/mcp-1.26.0.tar.gz", hash = "sha256:db6e2ef491eecc1a0d93711a76f28dec2e05999f93afd48795da1c1137142c66", size = 608005, upload-time = "2026-01-24T19:40:32.468Z" }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/fd/d9/eaa1f80170d2b7c5ba23f3b59f766f3a0bb41155fbc32a69adfa1adaaef9/mcp-1.26.0-py3-none-any.whl", hash = "sha256:904a21c33c25aa98ddbeb47273033c435e595bbacfdb177f4bd87f6dceebe1ca", size = 233615, upload-time = "2026-01-24T19:40:30.652Z" },
+]
+
+[[package]]
+name = "mcp-lms"
+version = "1.0.0"
+source = { editable = "mcp/mcp-lms" }
+dependencies = [
+    { name = "httpx" },
+    { name = "mcp" },
+    { name = "opentelemetry-distro", extra = ["otlp"] },
+    { name = "opentelemetry-exporter-otlp-proto-grpc" },
+    { name = "opentelemetry-instrumentation-httpx" },
+    { name = "opentelemetry-instrumentation-logging" },
+    { name = "pydantic" },
+]
+
+[package.metadata]
+requires-dist = [
+    { name = "httpx", specifier = ">=0.28.0,<1.0.0" },
+    { name = "mcp", specifier = ">=1.26.0,<2.0.0" },
+    { name = "opentelemetry-distro", extras = ["otlp"], specifier = ">=0.61b0" },
+    { name = "opentelemetry-exporter-otlp-proto-grpc", specifier = ">=1.40.0" },
+    { name = "opentelemetry-instrumentation-httpx", specifier = ">=0.61b0" },
+    { name = "opentelemetry-instrumentation-logging", specifier = ">=0.61b0" },
+    { name = "pydantic", specifier = ">=2.12.0,<3.0.0" },
 ]
 
 [[package]]
@@ -1086,11 +1086,11 @@ dev = [
 requires-dist = [
     { name = "fastapi", specifier = ">=0.115.12" },
     { name = "httpx", specifier = ">=0.28.1" },
-    { name = "opentelemetry-distro", extras = ["otlp"], specifier = ">=0.51b0" },
-    { name = "opentelemetry-exporter-otlp-proto-grpc", specifier = ">=1.30.0" },
-    { name = "opentelemetry-instrumentation-fastapi", specifier = ">=0.51b0" },
-    { name = "opentelemetry-instrumentation-httpx", specifier = ">=0.51b0" },
-    { name = "opentelemetry-instrumentation-logging", specifier = ">=0.51b0" },
+    { name = "opentelemetry-distro", extras = ["otlp"], specifier = ">=0.61b0" },
+    { name = "opentelemetry-exporter-otlp-proto-grpc", specifier = ">=1.40.0" },
+    { name = "opentelemetry-instrumentation-fastapi", specifier = ">=0.61b0" },
+    { name = "opentelemetry-instrumentation-httpx", specifier = ">=0.61b0" },
+    { name = "opentelemetry-instrumentation-logging", specifier = ">=0.61b0" },
     { name = "pydantic-settings", specifier = ">=2.0.0" },
     { name = "uvicorn", extras = ["standard"], specifier = ">=0.34.3" },
 ]

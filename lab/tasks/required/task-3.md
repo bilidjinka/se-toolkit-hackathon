@@ -137,7 +137,7 @@ The agent still can't access logs or traces — only you can, through the UIs. L
 
 ### What to do in Part C
 
-1. Implement new MCP tools that query VictoriaLogs and VictoriaTraces. Add them to the existing MCP server in `mcp/lms_mcp/` or write a new MCP server. You need at least:
+1. Implement new MCP tools that query VictoriaLogs and VictoriaTraces. Add them to a separate MCP server such as `mcp/mcp-obs/`, or use an equivalent new MCP module. You need at least:
 
    **Log tools (VictoriaLogs HTTP API — port 9428):**
    - `logs_search` — search logs by keyword and/or time range
@@ -175,17 +175,17 @@ The agent still can't access logs or traces — only you can, through the UIs. L
 
    Good files to expect by the end of Part C:
 
-   - `mcp/lms_mcp/server.py`
-   - `mcp/lms_mcp/observability.py` or the equivalent new MCP module
+   - `mcp/mcp-obs/src/mcp_obs/server.py`
+   - `mcp/mcp-obs/src/mcp_obs/observability.py` or the equivalent new MCP module
    - `docker-compose.yml` or your nanobot config/entrypoint wiring for the observability endpoints
    - `nanobot/workspace/skills/observability/SKILL.md`
 
    Good nanobot logs to expect after redeploy:
 
-   - `mcp_lms_logs_search`
-   - `mcp_lms_logs_error_count`
-   - `mcp_lms_traces_list`
-   - `mcp_lms_traces_get`
+   - `mcp_obs_logs_search`
+   - `mcp_obs_logs_error_count`
+   - `mcp_obs_traces_list`
+   - `mcp_obs_traces_get`
 
    Intended reasoning flow for a good answer:
 

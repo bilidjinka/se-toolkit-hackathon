@@ -391,7 +391,7 @@ The Dockerfile follows a two-stage `uv sync` pattern:
 4. `COPY .` — copy the full source code.
 5. `uv sync --frozen --package <name>` — install the workspace package.
 
-The `--package` argument must match the `name` field in the member's `pyproject.toml` (e.g., `lms-backend`, `lms-client-telegram-bot`, `lms-nanobot`).
+The `--package` argument must match the `name` field in the member's `pyproject.toml` (e.g., `lms-backend`, `client-telegram-bot`, `nanobot-webchat`).
 
 Each service has its own `.dockerignore` scoped to its directory.
 

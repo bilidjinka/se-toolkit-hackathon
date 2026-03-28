@@ -42,7 +42,7 @@ sequence = ["check", "dev-unsafe"]
 ## Run server
 [tool.poe.tasks.dev-unsafe]
 help = "Run server without static analysis"
-cmd = "python backend/app/run.py"
+cmd = "python -m lms_backend.run"
 
 # Run static analysis
 
@@ -101,12 +101,12 @@ envfile = "backend/.env.tests.e2e.secret"
 [tool.poe.tasks.export-openapi]
 help = "Export OpenAPI schema to openapi.json"
 cmd = "python scripts/export-openapi.py"
-env = { PYTHONPATH = "backend" }
+env = { PYTHONPATH = "backend/src" }
 
 [tool.poe.tasks.check-openapi]
 help = "Check that openapi.json is up to date"
 cmd = "python scripts/export-openapi.py --check"
-env = { PYTHONPATH = "backend" }
+env = { PYTHONPATH = "backend/src" }
 
 # Query Qwen Code API
 
@@ -123,7 +123,7 @@ include = [
   # "nanobot-websocket-channel",
 ]
 extraPaths = [
-  "backend",
+  "backend/src",
   "mcp/mcp-lms/src",
   "mcp/mcp-obs/src",
   "qwen-code-api/src",
@@ -140,7 +140,7 @@ reportMissingTypeStubs = "none"
 
 [tool.pytest.ini_options]
 testpaths = ["backend/tests"]
-pythonpath = ["backend"]
+pythonpath = ["backend/src"]
 asyncio_mode = "auto"
 
 [tool.ty.src]

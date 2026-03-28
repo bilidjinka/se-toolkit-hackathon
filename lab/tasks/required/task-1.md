@@ -122,16 +122,16 @@ The same MCP server works with any agent that speaks MCP — nanobot, Claude, Cu
 
 ### What to do in Part B
 
-The LMS MCP server is provided in `mcp/lms_mcp/`. It exposes the backend API as tools: `lms_health`, `lms_labs`, `lms_pass_rates`, etc.
+The LMS MCP server is provided in `mcp/mcp-lms/`. It exposes the backend API as tools: `lms_health`, `lms_labs`, `lms_pass_rates`, etc.
 
 1. Install the MCP server as a dependency so nanobot can find it:
 
    ```terminal
    cd nanobot
-   uv add lms-mcp --editable ../mcp
+   uv add mcp-lms --editable ../mcp/mcp-lms
    ```
 
-2. Add the MCP server to your repo-local nanobot config (`nanobot/config.json`). It runs as a subprocess via `python -m lms_mcp`.
+2. Add the MCP server to your repo-local nanobot config (`nanobot/config.json`). It runs as a subprocess via `python -m mcp_lms`.
 
    The MCP part of your config should look like this:
 
@@ -141,7 +141,7 @@ The LMS MCP server is provided in `mcp/lms_mcp/`. It exposes the backend API as 
        "mcpServers": {
          "lms": {
            "command": "python",
-           "args": ["-m", "lms_mcp"]
+           "args": ["-m", "mcp_lms"]
          }
        }
      }
@@ -149,9 +149,9 @@ The LMS MCP server is provided in `mcp/lms_mcp/`. It exposes the backend API as 
    ```
 
    > [!NOTE]
-   > `python -m lms_mcp` works here because you start nanobot with `uv run`.
+   > `python -m mcp_lms` works here because you start nanobot with `uv run`.
    > The MCP subprocess inherits the same Python environment, so `python` resolves
-   > to the repo-local interpreter where `lms-mcp` is installed.
+   > to the repo-local interpreter where `mcp-lms` is installed.
 
    > **Hint:** The MCP server needs the backend URL and backend API key. Pass them as environment variables:
    > `NANOBOT_LMS_BACKEND_URL=http://localhost:42002`
@@ -228,7 +228,7 @@ The agent works, but it could be smarter about *how* it uses tools. A **skill pr
    - Keep responses concise
    - When the user asks "what can you do?", explain its current tools and limits clearly
 
-   > **Hint:** Look at the tools in `mcp/lms_mcp/server.py` to see what's available and what parameters each tool needs.
+   > **Hint:** Look at the tools in `mcp/mcp-lms/src/mcp_lms/server.py` to see what's available and what parameters each tool needs.
 
 2. Test the difference with a fresh session name so old conversation state does not leak into the result:
 

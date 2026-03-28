@@ -17,7 +17,7 @@ In this task you:
 Keep this request flow in mind while working:
 
 ```text
-browser -> caddy -> nanobot webchat channel -> nanobot gateway -> lms_mcp -> backend
+browser -> caddy -> nanobot webchat channel -> nanobot gateway -> mcp_lms -> backend
 nanobot gateway -> qwen-code-api -> Qwen
 ```
 

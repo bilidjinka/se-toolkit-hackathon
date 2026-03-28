@@ -58,7 +58,7 @@ services:
       - ${POSTGRES_HOST_ADDRESS:?'POSTGRES_HOST_ADDRESS is required'}:${POSTGRES_HOST_PORT:?'POSTGRES_HOST_PORT is required'}:${CONST_POSTGRESQL_DEFAULT_PORT:?'CONST_POSTGRESQL_DEFAULT_PORT is required'}
     volumes:
       - postgres_data:/var/lib/postgresql/data
-      - ./backend/app/data/init.sql:/docker-entrypoint-initdb.d/init.sql
+      - ./backend/src/lms_backend/data/init.sql:/docker-entrypoint-initdb.d/init.sql
     healthcheck:
       test:
         [
